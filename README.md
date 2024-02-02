@@ -1,8 +1,32 @@
-# React + Vite
+# Personal Notes
+This project is a simple personal notes app build with react.js
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## How To Install
+1. Install Node.js
 
-Currently, two official plugins are available:
+    Download Node.js [Official](https://nodejs.org/en/download) then install it
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+2. Clone repository 
+
+   ```shell
+   git clone git@github.com:MHendriF/personal-notes.git
+   ```
+
+3. Navigate to working directory personal-notes
+
+    ```shell
+    cd personal-notes
+    ```
+
+4. Install the necessary packages by running the following commands:
+
+    ```shell
+    pnpm install
+    ```
+
+## Usage
+1. Running the following command:
+
+    ```shell
+    pnpm run dev
+    ```
