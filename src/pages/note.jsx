@@ -42,7 +42,6 @@ const NotePage = (props) => {
                 <div className='flex items-center justify-center pt-10 pb-10'>
                     <div className='w-full max-w-md'>
                         <h1 className='text-3xl font-bold mb-2 text-blue-600'>Add Notes</h1>
-
                         <FormAddNote></FormAddNote>
                     </div>
                 </div>

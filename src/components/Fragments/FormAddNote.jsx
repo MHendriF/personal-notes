@@ -8,11 +8,12 @@ import { useEffect } from 'react';
 const FormAddNote = () => {
     const [notes, setNotes] = useState([]);
     const [id, setId] = useState(7);
-    const [inputValue, setInputValue] = useState('');
+    const [inputTitle, setInputTitle] = useState('');
+    const [inputBody, setInputBody] = useState('');
 
     const titleRef = useRef(null);
     const maxCharLimit = 50;
-    const remainingChars = maxCharLimit - inputValue.length;
+    const remainingChars = maxCharLimit - inputTitle.length;
 
     useEffect(() => {
         titleRef.current.focus();
@@ -30,12 +31,19 @@ const FormAddNote = () => {
             archived: false,
         };
         console.log(newNote);
-        setNotes([...notes, newNote]);
+        //setNotes([...notes, newNote]);
+        clearInput();
+    };
+
+    const clearInput = () => {
+        setInputTitle('');
+        setInputBody('');
+        console.log('clearInput');
     };
 
     function handlerInput(e) {
         let char = e.target.value;
-        setInputValue(char.slice(0, 50));
+        setInputTitle(char.slice(0, 50));
     }
 
     return (
@@ -45,11 +53,17 @@ const FormAddNote = () => {
                 label='Title'
                 name='title'
                 type='text'
-                value={inputValue}
+                value={inputTitle}
                 placeholder='Note title here ....'
                 ref={titleRef}
                 onInput={(e) => handlerInput(e)}></InputForm>
-            <TextareaForm label='Description' name='body' rows='5' placeholder='Note description here ....'></TextareaForm>
+            <TextareaForm
+                label='Description'
+                name='body'
+                rows='5'
+                placeholder='Note description here ....'
+                value={inputBody}
+                onInput={(e) => setInputBody(e.target.value)}></TextareaForm>
             <Button classname='bg-blue-600 w-full' type='submit'>
                 Submit
             </Button>
