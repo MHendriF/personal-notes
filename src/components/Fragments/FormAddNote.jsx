@@ -8,8 +8,7 @@ import { useDispatch } from 'react-redux';
 import { addNote } from '../../redux/slices/noteSlice';
 
 const FormAddNote = () => {
-    const [notes, setNotes] = useState([]);
-    const [id, setId] = useState(7);
+    const [id, setId] = useState(Date.now());
     const [inputTitle, setInputTitle] = useState('');
     const [inputBody, setInputBody] = useState('');
 
@@ -24,7 +23,7 @@ const FormAddNote = () => {
 
     const handleAddNote = (e) => {
         e.preventDefault();
-        setId(id + Date.now());
+        setId(Date.now());
 
         const newNote = {
             id: id,
@@ -33,25 +32,25 @@ const FormAddNote = () => {
             createdAt: Date.now(),
             archived: false,
         };
-        console.log(newNote);
+        //console.log(newNote);
         dispatch(addNote(newNote));
         clearInput();
     };
 
-    const clearInput = () => {
+    const clearInput = (e) => {
         setInputTitle('');
         setInputBody('');
-        console.log('clearInput');
+        //console.log('clearInput');
     };
 
-    function handlerInput(e) {
+    const handlerInput = (e) => {
         let char = e.target.value;
         setInputTitle(char.slice(0, 50));
-    }
+    };
 
     return (
         <form onSubmit={handleAddNote}>
-            <p className='font-medium text-slate-600 mt-3 text-end text-xs'>Sisa karakter : {remainingChars}</p>
+            <p className='font-medium text-slate-600 mt-3 text-end text-xs'>Remaining characters : {remainingChars}</p>
             <InputForm
                 label='Title'
                 name='title'

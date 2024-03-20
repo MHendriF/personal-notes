@@ -8,9 +8,12 @@ const Navbar = () => {
 
     return (
         <div className='flex justify-end h-20 bg-blue-600 text-white items-center px-10'>
-            Search input
-            <Input placeholder='Search ...'></Input>
-            <Button className='bg-black px-10 mx-5 text-white rounded' onClick={() => setIsDarkMode(!isDarkMode)}>
+            <div className='w-1/4 mr-2'>
+                <Input placeholder='Search ...'></Input>
+            </div>
+            <Button
+                classname={`px-10 mx-5 rounded ${isDarkMode && 'bg-blue-800 text-white'} ${!isDarkMode && 'bg-slate-800 text-gray-100'}`}
+                onClick={() => setIsDarkMode(!isDarkMode)}>
                 {isDarkMode ? 'Light' : 'Dark'}
             </Button>
         </div>

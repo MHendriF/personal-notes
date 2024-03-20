@@ -12,6 +12,7 @@ const Input = forwardRef((props, ref) => {
             name={name}
             value={value}
             ref={ref}
+            required
         />
     );
 });
