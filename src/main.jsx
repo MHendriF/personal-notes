@@ -4,7 +4,9 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import './index.css';
 import ErrorPage from './pages/error404.jsx';
 import NotePage from './pages/note.jsx';
+import store from './redux/store.jsx';
 import DarkModeContextProvider from './context/DarkMode.jsx';
+import { Provider } from 'react-redux';
 
 const router = createBrowserRouter([
     {
@@ -20,8 +22,10 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
     <React.StrictMode>
-        <DarkModeContextProvider>
-            <RouterProvider router={router} />
-        </DarkModeContextProvider>
+        <Provider store={store}>
+            <DarkModeContextProvider>
+                <RouterProvider router={router} />
+            </DarkModeContextProvider>
+        </Provider>
     </React.StrictMode>,
 );

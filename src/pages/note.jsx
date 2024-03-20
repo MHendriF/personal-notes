@@ -5,34 +5,31 @@ import { useContext } from 'react';
 import FormAddNote from '../components/Fragments/FormAddNote';
 import { useEffect, useState } from 'react';
 import { getInitialData } from '../utils';
+import { useSelector } from 'react-redux';
 import CardNote from '../components/Fragments/CardNote';
 
 const NotePage = (props) => {
     const { isDarkMode, setIsDarkMode } = useContext(DarkMode);
-    const [notes, setNotes] = useState([]);
+    //const [notes, setNotes] = useState([]);
     const [archive, setArchive] = useState([]);
-    const [id, setId] = useState(7);
-    const [inputValue, setInputValue] = useState('');
+    const notes = useSelector((state) => state.notes.data);
+    const initalNotes = getInitialData();
+
+    console.log('initalNotes: ', initalNotes);
 
     useEffect(() => {
-        setNotes(getInitialData);
-        console.log('notes: ', notes);
+        if (notes.length === 0 && initalNotes.length > 0) {
+            localStorage.setItem('notes', JSON.stringify(initalNotes));
+            console.log('insert');
+        }
     }, []);
 
-    // const handleAddNote = (e) => {
-    //     e.preventDefault();
-    //     setId(id + Date.now());
-
-    //     const newNote = {
-    //         id: id,
-    //         title: e.target.title.value,
-    //         body: e.target.body.value,
-    //         createdAt: Date.now(),
-    //         archived: false,
-    //     };
-    //     console.log(newNote);
-    //     setNotes([...notes, newNote]);
-    // };
+    useEffect(() => {
+        if (notes.length > 0) {
+            localStorage.setItem('notes', JSON.stringify(notes));
+        }
+        console.log('notes: ', notes);
+    }, [notes]);
 
     return (
         <Fragment>
@@ -46,22 +43,20 @@ const NotePage = (props) => {
                     </div>
                 </div>
 
-                <h1 className='text-3xl font-bold mb-2 text-blue-600 m-5'>Your Notes</h1>
-                <div className='flex justify-items-center'>
-                    <div className='flex flex-wrap'>
-                        {notes.length > 0 &&
-                            notes.map((note) => (
-                                <CardNote key={note.id}>
-                                    <CardNote.Header title={note.title} createdAt={note.createdAt}></CardNote.Header>
-                                    <CardNote.Body title={note.title}>{note.body}</CardNote.Body>
-                                    <CardNote.Footer id={note.id}></CardNote.Footer>
-                                </CardNote>
-                            ))}
-                        {notes.length === 0 && <p className='text-center'>No notes</p>}
-                    </div>
+                <h1 className='text-3xl font-bold mb-2 mt-10 text-blue-600 ml-20'>Your Notes</h1>
+                <div className='flex flex-wrap w-full ml-20 mr-20'>
+                    {notes.length > 0 &&
+                        notes.map((note) => (
+                            <CardNote key={note.id}>
+                                <CardNote.Header title={note.title} createdAt={note.createdAt}></CardNote.Header>
+                                <CardNote.Body title={note.title}>{note.body}</CardNote.Body>
+                                <CardNote.Footer id={note.id}></CardNote.Footer>
+                            </CardNote>
+                        ))}
                 </div>
+                {notes.length === 0 && <div className='w-full flex items-center justify-center'>Empty Notes</div>}
 
-                <h1 className='text-3xl font-bold mb-2 text-blue-600 m-5'>Your Archive</h1>
+                <h1 className='text-3xl font-bold mb-2 mt-10 text-blue-600 ml-20'>Your Archive</h1>
                 <div className='flex flex-wrap'>
                     {archive.length > 0 &&
                         archive.map((note) => (
@@ -71,8 +66,8 @@ const NotePage = (props) => {
                                 <CardNote.Footer id={note.id}></CardNote.Footer>
                             </CardNote>
                         ))}
-                    {archive.length === 0 && <div className='w-full flex items-center justify-center'>Empty archive</div>}
                 </div>
+                {archive.length === 0 && <div className='w-full flex items-center justify-center'>Empty archive</div>}
             </div>
         </Fragment>
     );

@@ -4,6 +4,8 @@ import InputForm from '../Elements/Inputs/InputForm';
 import TextareaForm from '../Elements/Inputs/TextareaForm';
 import { useRef } from 'react';
 import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
+import { addNote } from '../../redux/slices/noteSlice';
 
 const FormAddNote = () => {
     const [notes, setNotes] = useState([]);
@@ -11,6 +13,7 @@ const FormAddNote = () => {
     const [inputTitle, setInputTitle] = useState('');
     const [inputBody, setInputBody] = useState('');
 
+    const dispatch = useDispatch();
     const titleRef = useRef(null);
     const maxCharLimit = 50;
     const remainingChars = maxCharLimit - inputTitle.length;
@@ -31,7 +34,7 @@ const FormAddNote = () => {
             archived: false,
         };
         console.log(newNote);
-        //setNotes([...notes, newNote]);
+        dispatch(addNote(newNote));
         clearInput();
     };
 
@@ -48,7 +51,7 @@ const FormAddNote = () => {
 
     return (
         <form onSubmit={handleAddNote}>
-            <p className='font-medium text-slate-600 mb-8 text-end text-xs'>Sisa karakter : {remainingChars}</p>
+            <p className='font-medium text-slate-600 mt-3 text-end text-xs'>Sisa karakter : {remainingChars}</p>
             <InputForm
                 label='Title'
                 name='title'
