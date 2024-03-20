@@ -17,7 +17,7 @@ const Header = (props) => {
     return (
         <div className='px-5 py-5 pb-5'>
             <a href='#'>
-                <h5 className='text-xl font-semibold tracking-tight text-white'>{title.length > 30 ? `${title.substring(0, 29)} ...` : title}</h5>
+                <h5 className='text-xl font-semibold tracking-tight text-white'>{title.length > 30 ? `${title.substring(0, 29)}...` : title}</h5>
                 <p className='text-xs text-white'>{showFormattedDate(createdAt)}</p>
             </a>
         </div>
@@ -29,7 +29,7 @@ const Body = (props) => {
     return (
         <div className='px-5 pb-5 h-full'>
             <a href='#'>
-                <p className='text-m text-white'>{children.length > 200 ? `${children.substring(0, 200)} ...` : children}</p>
+                <p className='text-m text-white'>{children.length > 200 ? `${children.substring(0, 200)}...` : children}</p>
             </a>
         </div>
     );
@@ -43,7 +43,6 @@ const Footer = (props) => {
     };
 
     const handleArchiveNote = (id) => {
-        console.log('Archive: ', id);
         dispatch(archiveNote(id));
     };
 

@@ -16,7 +16,6 @@ const noteSlice = createSlice({
             const item = state.data.find((note) => note.id === action.payload);
             if (item) {
                 item.archived = !item.archived;
-                console.log('archived: ', item);
             } else {
                 console.log('item not found');
             }

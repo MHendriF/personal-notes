@@ -37,7 +37,7 @@ const FormAddNote = () => {
         clearInput();
     };
 
-    const clearInput = (e) => {
+    const clearInput = () => {
         setInputTitle('');
         setInputBody('');
         //console.log('clearInput');
