@@ -68,7 +68,7 @@ const FormAddNote = () => {
                 placeholder='Note description here ....'
                 value={inputBody}
                 onInput={(e) => setInputBody(e.target.value)}></TextareaForm>
-            <Button classname='bg-blue-600 w-full' type='submit'>
+            <Button classname='bg-blue-600 w-full text-white' type='submit'>
                 Submit
             </Button>
         </form>

@@ -48,10 +48,10 @@ const Footer = (props) => {
 
     return (
         <div className='flex items-center justify-between px-5 pb-5'>
-            <Button onClick={() => handleDeleteNote(id)} classname='bg-red-600'>
+            <Button onClick={() => handleDeleteNote(id)} classname='bg-red-600 text-white'>
                 Delete
             </Button>
-            <Button onClick={() => handleArchiveNote(id)} classname='bg-orange-600'>
+            <Button onClick={() => handleArchiveNote(id)} classname='bg-orange-600 text-white'>
                 {archived ? 'Unarchive' : 'Archive'}
             </Button>
         </div>

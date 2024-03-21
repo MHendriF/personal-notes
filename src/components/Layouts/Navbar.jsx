@@ -8,7 +8,7 @@ const Navbar = (props) => {
     const { onInput } = props;
 
     return (
-        <div className={`flex justify-end h-20 text-white items-center px-10 ${isDarkMode && 'bg-gray-800'} ${!isDarkMode && 'bg-blue-600 '}`}>
+        <div className={`flex justify-end h-20 items-center px-10 ${isDarkMode && 'bg-gray-800'} ${!isDarkMode && 'bg-blue-600 '}`}>
             <div className='w-1/4 mr-2'>
                 <Input placeholder='Search notes...' onInput={onInput} name='search' type='text'></Input>
             </div>
