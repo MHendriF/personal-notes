@@ -6,12 +6,14 @@ import { useRef } from 'react';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { addNote } from '../../redux/slices/noteSlice';
+import { useContext } from 'react';
+import { DarkMode } from '../../context/DarkMode';
 
 const FormAddNote = () => {
     const [id, setId] = useState(Date.now());
     const [inputTitle, setInputTitle] = useState('');
     const [inputBody, setInputBody] = useState('');
-
+    const { isDarkMode, setIsDarkMode } = useContext(DarkMode);
     const dispatch = useDispatch();
     const titleRef = useRef(null);
     const maxCharLimit = 50;
@@ -32,7 +34,6 @@ const FormAddNote = () => {
             createdAt: Date.now(),
             archived: false,
         };
-        //console.log(newNote);
         dispatch(addNote(newNote));
         clearInput();
     };
@@ -40,7 +41,6 @@ const FormAddNote = () => {
     const clearInput = () => {
         setInputTitle('');
         setInputBody('');
-        //console.log('clearInput');
     };
 
     const handlerInput = (e) => {
@@ -50,7 +50,9 @@ const FormAddNote = () => {
 
     return (
         <form onSubmit={handleAddNote}>
-            <p className='font-medium text-slate-600 mt-3 text-end text-xs'>Remaining characters : {remainingChars}</p>
+            <p className={`font-medium mt-3 text-end text-xs ${isDarkMode && 'text-white'} ${!isDarkMode && 'text-slate-700'}`}>
+                Remaining characters : {remainingChars}
+            </p>
             <InputForm
                 label='Title'
                 name='title'

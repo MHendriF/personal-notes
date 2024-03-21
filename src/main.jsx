@@ -1,12 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import './index.css';
+import { Provider } from 'react-redux';
 import ErrorPage from './pages/error404.jsx';
 import NotePage from './pages/note.jsx';
 import store from './redux/store.jsx';
 import DarkModeContextProvider from './context/DarkMode.jsx';
-import { Provider } from 'react-redux';
+import './index.css';
 
 const router = createBrowserRouter([
     {

@@ -11,6 +11,9 @@ const noteSlice = createSlice({
         },
         deleteNote: (state, action) => {
             state.data = state.data.filter((note) => note.id !== action.payload);
+            if (state.data.length === 0) {
+                localStorage.removeItem('notes');
+            }
         },
         archiveNote: (state, action) => {
             const item = state.data.find((note) => note.id === action.payload);
