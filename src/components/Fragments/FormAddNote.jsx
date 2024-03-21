@@ -1,12 +1,9 @@
-import { useState } from 'react';
+import { useState, useContext, useRef, useEffect } from 'react';
 import Button from '../Elements/Buttons';
 import InputForm from '../Elements/Inputs/InputForm';
 import TextareaForm from '../Elements/Inputs/TextareaForm';
-import { useRef } from 'react';
-import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { addNote } from '../../redux/slices/noteSlice';
-import { useContext } from 'react';
 import { DarkMode } from '../../context/DarkMode';
 
 const FormAddNote = () => {

@@ -1,21 +1,17 @@
 import { Fragment, useEffect, useState, useRef, useContext } from 'react';
 import { useSelector } from 'react-redux';
 import { DarkMode } from '../context/DarkMode';
-import { getInitialData } from '../utils';
 import FormAddNote from '../components/Fragments/FormAddNote';
 import Navbar from '../components/Layouts/Navbar';
 import CardNote from '../components/Fragments/CardNote';
 
 const NotePage = () => {
-    const notes = useSelector((state) => state.notes.data);
     const { isDarkMode, setIsDarkMode } = useContext(DarkMode);
     const [query, setQuery] = useState('');
     const [filteredNotes, setFilteredNotes] = useState([]);
-    const initalNotes = getInitialData();
-
+    const notes = useSelector((state) => state.notes.data);
     const noteRef = useRef(null);
     const filteredNotesRef = useRef(null);
-    localStorage.setItem('notes', JSON.stringify(initalNotes));
 
     useEffect(() => {
         if (notes.length > 0) {

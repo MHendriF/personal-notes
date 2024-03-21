@@ -1,9 +1,10 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { getInitialData } from '../../utils';
 
 const noteSlice = createSlice({
     name: 'notes',
     initialState: {
-        data: JSON.parse(localStorage.getItem('notes')) || [],
+        data: JSON.parse(localStorage.getItem('notes')) || [...getInitialData()],
     },
     reducers: {
         addNote: (state, action) => {
